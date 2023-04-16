@@ -8,22 +8,22 @@ RUN apk -U update && \
     apk -U add \
         wget \
         nginx \
-        php7 \
-        php7-fpm \
-        php7-curl \
-        php7-dom \
-        php7-gettext \
-        php7-mbstring \
-        php7-xml \
-        php7-zip \
-        php7-zlib \
-        php7-gd \
-        php7-openssl \
-        php7-pdo \
-        php7-pdo_mysql \
-        php7-session \
-        php7-simplexml \
-        php7-json \
+        php81 \
+        php81-fpm \
+        php81-curl \
+        php81-dom \
+        php81-gettext \
+        php81-mbstring \
+        php81-xml \
+        php81-zip \
+        php81-zlib \
+        php81-gd \
+        php81-openssl \
+        php81-pdo \
+        php81-pdo_mysql \
+        php81-session \
+        php81-simplexml \
+        php81-json \
         supervisor \
         sudo
 
@@ -35,14 +35,14 @@ RUN wget https://github.com/spotweb/spotweb/archive/${VERSION}.zip -P /tmp &&\
     rm /tmp/${VERSION}.zip
 
 # Set the timezone in the php config file
-RUN sed -i "s/;date.timezone =/date.timezone = ${TZ}/g" /etc/php7/php.ini
+RUN sed -i "s/;date.timezone =/date.timezone = ${TZ}/g" /etc/php81/php.ini
 
 # Copy config files to the filesystem
 COPY ./conf/cron/spotweb /etc/periodic/hourly/spotweb
 COPY ./conf/supervisord.conf /etc/supervisord.conf
 COPY ./conf/nginx /etc/nginx
-COPY ./conf/php-fpm/www.conf /etc/php7/php-fpm.d/www.conf
-COPY ./conf/php-fpm/php.ini /etc/php7/conf.d/zzz_custom.ini
+COPY ./conf/php-fpm/www.conf /etc/php81/php-fpm.d/www.conf
+COPY ./conf/php-fpm/php.ini /etc/php81/conf.d/zzz_custom.ini
 COPY ./conf/spotweb /var/www/spotweb
 COPY ./entrypoint.sh /entrypoint.sh
 
