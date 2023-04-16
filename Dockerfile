@@ -1,6 +1,6 @@
 FROM alpine
 
-ARG VERSION=1.4.4
+ARG VERSION=1.5.4
 ARG TZ="\"Europe\/Amsterdam\""
 
 RUN apk -U update && \
